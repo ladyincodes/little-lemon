@@ -1,12 +1,14 @@
 export default function Footer() {
   return (
-    <footer>
-      <div>
-        <img src="/src/assets/Logo.svg" alt="restaurtan_logo" />
-      </div>
-      <div>
-        <ul>
-          <h6>Doormat Navigation</h6>
+    <footer className="footer">
+      <img
+        className="footer-logo"
+        src="/src/assets/Logo.svg"
+        alt="restaurtan_logo"
+      />
+      <div className="footer-menu">
+        <ul className="footer-link-column">
+          <h5 className="footer-menu-header">Doormat Navigation</h5>
           <li>
             <a href="">Home</a>
           </li>
@@ -26,14 +28,14 @@ export default function Footer() {
             <a href="">Login</a>
           </li>
         </ul>
-        <ul>
-          <h6>Contact</h6>
+        <ul className="footer-link-column">
+          <h5 className="footer-menu-header">Contact</h5>
           <li>
             <a href="">Address</a>
           </li>
         </ul>
-        <ul>
-          <h6>Social Media Links</h6>
+        <ul className="footer-link-column">
+          <h5 className="footer-menu-header">Social Media Links</h5>
           <li>
             <a href="">Facebook</a>
           </li>

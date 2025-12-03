@@ -1,3 +1,15 @@
+import HeroSection from "./HeroSection";
+import Highlights from "./Highlights";
+import Testimonials from "./Testimonials";
+import About from "./About";
+
 export default function Main() {
-  return <main>Main</main>;
+  return (
+    <main>
+      <HeroSection />
+      <Highlights />
+      <Testimonials />
+      <About />
+    </main>
+  );
 }
