@@ -10,7 +10,7 @@ export default function HeroSection() {
             traditional recipes served with a modern twist.
           </p>
           <button>
-            <a href="#">Reserve a Table</a>
+            <a href="/booking">Reserve a Table</a>
           </button>
         </article>
         <aside className="hero-image">
