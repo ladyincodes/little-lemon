@@ -3,18 +3,22 @@ import "./App.css";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Main from "./components/Main";
-import Booking from "./components/Booking";
+import BookingPage from "./components/BookingPage";
+import ConfirmedBooking from "./components/ConfirmedBooking";
 
 function App() {
   return (
-    <>
+    <div style={{ display: "contents" }}>
       <Header />
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/booking" element={<Booking />} />
-      </Routes>
+      <main>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/booking" element={<BookingPage />} />
+          <Route path="/confirmed" element={<ConfirmedBooking />} />
+        </Routes>
+      </main>
       <Footer />
-    </>
+    </div>
   );
 }
 
