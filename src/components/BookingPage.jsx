@@ -38,7 +38,6 @@ export default function BookingPage() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          // minHeight: "100vh",
         }}
       >
         <BookingForm
