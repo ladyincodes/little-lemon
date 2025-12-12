@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 export default function ConfirmedBooking() {
   return (
     <Box
+      component="main"
+      role="main"
+      aria-labelledby="confirmation-heading"
       sx={{
         minHeight: "50vh",
         display: "flex",
@@ -20,14 +23,26 @@ export default function ConfirmedBooking() {
           border: "none",
           boxShadow: "none",
         }}
+        role="status"
+        aria-live="polite"
       >
         <CardContent>
-          <Typography variant="h4" component="h1" gutterBottom>
+          <Typography
+            variant="h4"
+            component="h1"
+            id="confirmation-heading"
+            gutterBottom
+          >
             Booking Confirmed
-            <CheckCircleRoundedIcon color="success" sx={{ ml: 1 }} />
+            <CheckCircleRoundedIcon
+              color="success"
+              sx={{ ml: 1 }}
+              aria-label="Success"
+              role="img"
+            />
           </Typography>
 
-          <Typography variant="body1" sx={{ mb: 3 }}>
+          <Typography variant="body1" component="p" sx={{ mb: 3 }}>
             Your reservation has been successfully submitted. We’re excited to
             have you!
           </Typography>
@@ -36,6 +51,7 @@ export default function ConfirmedBooking() {
             variant="contained"
             component={Link}
             to="/"
+            aria-label="Return to Little Lemon Restaurant home page"
             sx={{
               borderRadius: "8px",
               border: "1px solid transparent",

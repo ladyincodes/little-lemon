@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 export default function HeroSection() {
   return (
     <Box
+      component="section"
+      role="banner"
+      aria-labelledby="hero-heading"
       sx={{
         backgroundColor: "#3a4b46",
         borderRadius: { xs: "0", md: "16px" },
@@ -25,6 +28,7 @@ export default function HeroSection() {
             <Typography
               variant="h2"
               component="h1"
+              id="hero-heading"
               sx={{
                 color: "#c3a510",
                 fontSize: { xs: "2.5rem", md: "3.5rem" },
@@ -51,6 +55,7 @@ export default function HeroSection() {
             </Typography>
             <Typography
               variant="body1"
+              component="p"
               sx={{
                 color: "white",
                 fontSize: { xs: "1rem", md: "1.1rem" },
@@ -66,6 +71,7 @@ export default function HeroSection() {
               component={Link}
               to="/booking"
               variant="contained"
+              aria-label="Reserve a table at Little Lemon Restaurant"
               sx={{
                 backgroundColor: "#c3a510",
                 color: "black",
@@ -104,7 +110,7 @@ export default function HeroSection() {
             <Box
               component="img"
               src="/src/assets/restauranfood.jpg"
-              alt="food"
+              alt="Delicious Mediterranean cuisine at Little Lemon Restaurant"
               sx={{
                 width: { xs: "85%", md: "300px" },
                 maxWidth: { xs: "350px", md: "300px" },

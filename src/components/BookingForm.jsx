@@ -1,6 +1,7 @@
 import {
   Button,
   FormControl,
+  FormHelperText,
   InputLabel,
   MenuItem,
   Select,
@@ -34,6 +35,10 @@ export default function BookingForm({
   const schema = yup.object().shape({
     date: yup
       .date()
+      .transform((value, originalValue) => {
+        return originalValue === "" ? null : value;
+      })
+      .nullable()
       .required("Date is required")
       .min(new Date(), "Date cannot be in the past"),
 
@@ -90,7 +95,7 @@ export default function BookingForm({
   }
 
   return (
-    <FormContainer onSubmit={handleSubmit}>
+    <FormContainer onSubmit={handleSubmit} aria-label="Reservation form">
       <Typography
         variant="h2"
         component="h1"
@@ -108,6 +113,8 @@ export default function BookingForm({
       </Typography>
       {/* date */}
       <TextField
+        id="reservation-date"
+        name="date"
         label="Choose Date"
         type="date"
         value={date}
@@ -121,23 +128,33 @@ export default function BookingForm({
         }}
         onBlur={() => setTouched((prev) => ({ ...prev, date: true }))}
         InputLabelProps={{ shrink: true }}
+        inputProps={{
+          "aria-describedby":
+            touched.date && errors.date ? "date-error" : undefined,
+        }}
         required
         error={touched.date && !!errors.date}
         helperText={touched.date ? errors.date : ""}
+        aria-invalid={touched.date && !!errors.date}
       />
 
       {/* time dropdown*/}
-      <FormControl>
+      <FormControl error={touched.time && !!errors.time}>
         <InputLabel id="time-select-label">Choose Time</InputLabel>
         <Select
           labelId="time-select-label"
           id="time-select"
+          name="time"
           value={time}
           label="Choose Time"
           onChange={(e) => setTime(e.target.value)}
           sx={{ textAlign: "left" }}
           required
           onBlur={() => setTouched((prev) => ({ ...prev, time: true }))}
+          aria-invalid={touched.time && !!errors.time}
+          aria-describedby={
+            touched.time && errors.time ? "time-error" : undefined
+          }
         >
           {availableTimes.map((t) => (
             <MenuItem key={t} value={t}>
@@ -146,61 +163,54 @@ export default function BookingForm({
           ))}
         </Select>
         {touched.time && errors.time && (
-          <p
-            style={{
-              color: "#d3302f",
-              fontSize: "0.8rem",
-              textAlign: "left",
-              margin: "0",
-              marginLeft: "0.8rem",
-            }}
-          >
-            {errors.time}
-          </p>
+          <FormHelperText id="time-error">{errors.time}</FormHelperText>
         )}
       </FormControl>
 
       {/* guests */}
       <TextField
+        id="number-of-guests"
+        name="guests"
         label="Number of Guests"
         type="number"
         value={guest}
         onChange={(e) => setGuest(e.target.value)}
         onBlur={() => setTouched((prev) => ({ ...prev, guest: true }))}
-        inputProps={{ min: 1, max: 10 }}
+        inputProps={{
+          min: 1,
+          max: 10,
+          "aria-describedby":
+            touched.guest && errors.guest ? "guest-error" : undefined,
+        }}
         required
         error={touched.guest && !!errors.guest}
         helperText={touched.guest ? errors.guest : ""}
+        aria-invalid={touched.guest && !!errors.guest}
       />
 
       {/* occasion */}
-      <FormControl>
-        <InputLabel id="occasion-select-lable">Occasion</InputLabel>
+      <FormControl error={touched.occasion && !!errors.occasion}>
+        <InputLabel id="occasion-select-label">Occasion</InputLabel>
         <Select
-          labelId="occasion-select-lable"
+          labelId="occasion-select-label"
           label="Occasion"
           id="occasion-select"
+          name="occasion"
           value={occasion}
           onChange={(e) => setOccasion(e.target.value)}
           onBlur={() => setTouched((prev) => ({ ...prev, occasion: true }))}
           sx={{ textAlign: "left" }}
           required
+          aria-invalid={touched.occasion && !!errors.occasion}
+          aria-describedby={
+            touched.occasion && errors.occasion ? "occasion-error" : undefined
+          }
         >
           <MenuItem value="birthday">Birthday</MenuItem>
           <MenuItem value="anniversary">Anniversary</MenuItem>
         </Select>
         {touched.occasion && errors.occasion && (
-          <p
-            style={{
-              color: "#d3302f",
-              fontSize: "0.8rem",
-              textAlign: "left",
-              margin: "0",
-              marginLeft: "0.8rem",
-            }}
-          >
-            {errors.occasion}
-          </p>
+          <FormHelperText id="occasion-error">{errors.occasion}</FormHelperText>
         )}
       </FormControl>
 
@@ -209,6 +219,7 @@ export default function BookingForm({
         variant="contained"
         type="submit"
         disabled={!isValid}
+        aria-label="Submit reservation form"
         sx={{
           borderRadius: "8px",
           padding: "0.75rem 1.5rem",

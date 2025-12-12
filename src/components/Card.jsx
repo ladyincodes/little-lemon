@@ -11,6 +11,8 @@ import DeliveryDiningIcon from "@mui/icons-material/DeliveryDining";
 export default function Card({ img, title, price, description }) {
   return (
     <MuiCard
+      component="article"
+      aria-labelledby={`card-title-${title.replace(/\s+/g, "-").toLowerCase()}`}
       sx={{
         backgroundColor: "#d9d9d9",
         borderRadius: "16px",
@@ -22,7 +24,7 @@ export default function Card({ img, title, price, description }) {
       <CardMedia
         component="img"
         image={img}
-        alt={title}
+        alt={`${title} dish`}
         sx={{
           height: { xs: 200, md: 250 },
           objectFit: "cover",
@@ -40,13 +42,16 @@ export default function Card({ img, title, price, description }) {
         >
           <Typography
             variant="h6"
-            component="h4"
+            component="h3"
+            id={`card-title-${title.replace(/\s+/g, "-").toLowerCase()}`}
             sx={{ fontWeight: 600, margin: 0 }}
           >
             {title}
           </Typography>
           <Typography
             variant="body1"
+            component="span"
+            aria-label={`Price: ${price.toFixed(2)} dollars`}
             sx={{ color: "#c3a510", fontWeight: 600 }}
           >
             ${price.toFixed(2)}
@@ -56,6 +61,7 @@ export default function Card({ img, title, price, description }) {
         {/* Description */}
         <Typography
           variant="body2"
+          component="p"
           sx={{
             marginBottom: "1rem",
             color: "#333",
@@ -71,6 +77,7 @@ export default function Card({ img, title, price, description }) {
         {/* Order Link */}
         <Link
           href="#"
+          aria-label={`Order ${title} for delivery`}
           sx={{
             display: "flex",
             alignItems: "center",
@@ -85,7 +92,7 @@ export default function Card({ img, title, price, description }) {
         >
           Order a delivery
           <DeliveryDiningIcon
-            alt="delivery icon"
+            aria-hidden="true"
             sx={{ width: "20px", height: "20px" }}
           />
         </Link>

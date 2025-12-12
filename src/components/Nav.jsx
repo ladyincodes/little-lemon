@@ -35,7 +35,7 @@ export default function Nav() {
   };
 
   return (
-    <>
+    <Box component="nav" role="navigation" aria-label="Main navigation">
       <AppBar
         position="static"
         sx={{
@@ -55,11 +55,11 @@ export default function Nav() {
           }}
         >
           {/* Logo */}
-          <Link to="/">
+          <Link to="/" aria-label="Little Lemon Restaurant home page">
             <Box
               component="img"
               src="/src/assets/Logo.svg"
-              alt="restaurant logo"
+              alt="Little Lemon Restaurant logo"
               sx={{
                 width: { xs: "120px", md: "200px" },
                 height: "auto",
@@ -71,19 +71,30 @@ export default function Nav() {
 
           {/* Desktop Menu */}
           {!isMobile && (
-            <Box sx={{ display: "flex", gap: "1.5rem" }}>
+            <Box
+              component="ul"
+              role="list"
+              sx={{
+                display: "flex",
+                gap: "1.5rem",
+                listStyle: "none",
+                margin: 0,
+                padding: 0,
+              }}
+            >
               {menuItems.map((item) => (
-                <Link
-                  key={item.text}
-                  to={item.path}
-                  style={{
-                    color: "black",
-                    textDecoration: "none",
-                    fontWeight: 600,
-                  }}
-                >
-                  {item.text}
-                </Link>
+                <Box component="li" key={item.text}>
+                  <Link
+                    to={item.path}
+                    style={{
+                      color: "black",
+                      textDecoration: "none",
+                      fontWeight: 600,
+                    }}
+                  >
+                    {item.text}
+                  </Link>
+                </Box>
               ))}
             </Box>
           )}
@@ -93,7 +104,8 @@ export default function Nav() {
             <IconButton
               edge="end"
               color="inherit"
-              aria-label="menu"
+              aria-label="Open navigation menu"
+              aria-expanded={mobileOpen}
               onClick={handleDrawerToggle}
               sx={{ color: "black" }}
             >
@@ -108,6 +120,7 @@ export default function Nav() {
         anchor="right"
         open={mobileOpen}
         onClose={handleDrawerToggle}
+        aria-label="Mobile navigation menu"
         sx={{
           "& .MuiDrawer-paper": {
             width: 250,
@@ -115,11 +128,14 @@ export default function Nav() {
         }}
       >
         <Box sx={{ p: 2, display: "flex", justifyContent: "flex-end" }}>
-          <IconButton onClick={handleDrawerToggle}>
+          <IconButton
+            onClick={handleDrawerToggle}
+            aria-label="Close navigation menu"
+          >
             <CloseIcon />
           </IconButton>
         </Box>
-        <List>
+        <List component="nav" aria-label="Main navigation links">
           {menuItems.map((item) => (
             <ListItem key={item.text} disablePadding>
               <ListItemButton
@@ -136,6 +152,6 @@ export default function Nav() {
           ))}
         </List>
       </Drawer>
-    </>
+    </Box>
   );
 }

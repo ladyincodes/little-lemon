@@ -21,6 +21,8 @@ export default function Footer() {
   return (
     <Box
       component="footer"
+      role="contentinfo"
+      aria-label="Site footer"
       sx={{
         backgroundColor: "#d9d9d9",
         padding: { xs: "2rem 1.5rem", md: "2rem 2rem" },
@@ -42,17 +44,19 @@ export default function Footer() {
               alignItems: "center",
             }}
           >
-            <Box
-              component="img"
-              src="/src/assets/Logo.svg"
-              alt="restaurant logo"
-              sx={{
-                width: { xs: "150px", md: "180px" },
-                height: "auto",
-                transform: { xs: "none", md: "rotate(-90deg)" },
-                display: "block",
-              }}
-            />
+            <Link to="/" aria-label="Little Lemon Restaurant home page">
+              <Box
+                component="img"
+                src="/src/assets/Logo.svg"
+                alt="Little Lemon Restaurant logo"
+                sx={{
+                  width: { xs: "150px", md: "180px" },
+                  height: "auto",
+                  transform: { xs: "none", md: "rotate(-90deg)" },
+                  display: "block",
+                }}
+              />
+            </Link>
           </Box>
         </Grid>
 
@@ -60,14 +64,16 @@ export default function Footer() {
         <Grid item xs={12} md={9}>
           <Grid
             container
-            spacing={{ xs: 2, md: 3 }}
+            spacing={{ xs: 2, md: 6 }}
             justifyContent="flex-start"
           >
             {/* Doormat Navigation */}
             <Grid item xs={12} sm={4}>
-              <Stack spacing={1} alignItems="flex-start">
+              <Box component="nav" aria-labelledby="footer-nav-heading">
                 <Typography
                   variant="h6"
+                  component="h2"
+                  id="footer-nav-heading"
                   sx={{
                     color: "#3a4b46",
                     fontWeight: 600,
@@ -77,27 +83,37 @@ export default function Footer() {
                 >
                   Doormat Navigation
                 </Typography>
-                {footerLinks.navigation.map((link) => (
-                  <Link
-                    key={link.text}
-                    to={link.path}
-                    style={{
-                      color: "black",
-                      textDecoration: "none",
-                      fontSize: "0.9rem",
-                    }}
-                  >
-                    {link.text}
-                  </Link>
-                ))}
-              </Stack>
+                <Stack
+                  component="ul"
+                  spacing={1}
+                  alignItems="flex-start"
+                  sx={{ listStyle: "none", margin: 0, padding: 0 }}
+                >
+                  {footerLinks.navigation.map((link) => (
+                    <Box component="li" key={link.text}>
+                      <Link
+                        to={link.path}
+                        style={{
+                          color: "black",
+                          textDecoration: "none",
+                          fontSize: "0.9rem",
+                        }}
+                      >
+                        {link.text}
+                      </Link>
+                    </Box>
+                  ))}
+                </Stack>
+              </Box>
             </Grid>
 
             {/* Contact */}
             <Grid item xs={12} sm={4}>
-              <Stack spacing={1} alignItems="flex-start">
+              <Box aria-labelledby="footer-contact-heading">
                 <Typography
                   variant="h6"
+                  component="h2"
+                  id="footer-contact-heading"
                   sx={{
                     color: "#3a4b46",
                     fontWeight: 600,
@@ -107,27 +123,37 @@ export default function Footer() {
                 >
                   Contact
                 </Typography>
-                {footerLinks.contact.map((link) => (
-                  <Link
-                    key={link.text}
-                    to={link.path}
-                    style={{
-                      color: "black",
-                      textDecoration: "none",
-                      fontSize: "0.9rem",
-                    }}
-                  >
-                    {link.text}
-                  </Link>
-                ))}
-              </Stack>
+                <Stack
+                  component="ul"
+                  spacing={1}
+                  alignItems="flex-start"
+                  sx={{ listStyle: "none", margin: 0, padding: 0 }}
+                >
+                  {footerLinks.contact.map((link) => (
+                    <Box component="li" key={link.text}>
+                      <Link
+                        to={link.path}
+                        style={{
+                          color: "black",
+                          textDecoration: "none",
+                          fontSize: "0.9rem",
+                        }}
+                      >
+                        {link.text}
+                      </Link>
+                    </Box>
+                  ))}
+                </Stack>
+              </Box>
             </Grid>
 
             {/* Social Media */}
             <Grid item xs={12} sm={4}>
-              <Stack spacing={1} alignItems="flex-start">
+              <Box component="nav" aria-labelledby="footer-social-heading">
                 <Typography
                   variant="h6"
+                  component="h2"
+                  id="footer-social-heading"
                   sx={{
                     color: "#3a4b46",
                     fontWeight: 600,
@@ -137,20 +163,28 @@ export default function Footer() {
                 >
                   Social Media Links
                 </Typography>
-                {footerLinks.social.map((link) => (
-                  <Link
-                    key={link.text}
-                    to={link.path}
-                    style={{
-                      color: "black",
-                      textDecoration: "none",
-                      fontSize: "0.9rem",
-                    }}
-                  >
-                    {link.text}
-                  </Link>
-                ))}
-              </Stack>
+                <Stack
+                  component="ul"
+                  spacing={1}
+                  alignItems="flex-start"
+                  sx={{ listStyle: "none", margin: 0, padding: 0 }}
+                >
+                  {footerLinks.social.map((link) => (
+                    <Box component="li" key={link.text}>
+                      <Link
+                        to={link.path}
+                        style={{
+                          color: "black",
+                          textDecoration: "none",
+                          fontSize: "0.9rem",
+                        }}
+                      >
+                        {link.text}
+                      </Link>
+                    </Box>
+                  ))}
+                </Stack>
+              </Box>
             </Grid>
           </Grid>
         </Grid>

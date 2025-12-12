@@ -10,6 +10,8 @@ import {
 export default function TestimonialCard({ rating, username, comment, image }) {
   return (
     <Card
+      component="article"
+      aria-label={`Testimonial from ${username}`}
       sx={{
         backgroundColor: "#d9d9d9",
         borderRadius: "16px",
@@ -26,6 +28,7 @@ export default function TestimonialCard({ rating, username, comment, image }) {
           value={rating}
           readOnly
           size="small"
+          aria-label={`Rating: ${rating} out of 5 stars`}
           sx={{
             marginBottom: "0.4rem",
             "& .MuiRating-iconFilled": {
@@ -43,9 +46,14 @@ export default function TestimonialCard({ rating, username, comment, image }) {
             marginBottom: "0.4rem",
           }}
         >
-          <Avatar src={image} alt={username} sx={{ width: 28, height: 28 }} />
+          <Avatar
+            src={image}
+            alt={`${username}'s profile picture`}
+            sx={{ width: 28, height: 28 }}
+          />
           <Typography
             variant="body2"
+            component="h4"
             sx={{ fontWeight: 600, color: "#333", fontSize: "0.85rem" }}
           >
             {username}
@@ -55,6 +63,7 @@ export default function TestimonialCard({ rating, username, comment, image }) {
         {/* Comment */}
         <Typography
           variant="body2"
+          component="blockquote"
           sx={{
             color: "#333",
             textAlign: "left",
@@ -65,6 +74,7 @@ export default function TestimonialCard({ rating, username, comment, image }) {
             display: "-webkit-box",
             WebkitLineClamp: 2,
             WebkitBoxOrient: "vertical",
+            margin: 0,
           }}
         >
           {comment}

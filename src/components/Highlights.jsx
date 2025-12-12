@@ -31,6 +31,8 @@ export default function Highlights() {
   ];
   return (
     <Box
+      component="section"
+      aria-labelledby="specials-heading"
       sx={{
         marginTop: { xs: "3rem", md: "4rem" },
         marginBottom: { xs: "3rem", md: "4rem" },
@@ -50,6 +52,7 @@ export default function Highlights() {
         <Typography
           variant="h3"
           component="h2"
+          id="specials-heading"
           sx={{
             fontSize: { xs: "1.8rem", md: "2.5rem" },
             fontWeight: 600,
@@ -59,6 +62,7 @@ export default function Highlights() {
         </Typography>
         <Button
           variant="contained"
+          aria-label="View full online menu"
           sx={{
             backgroundColor: "#c3a510",
             color: "black",
@@ -80,11 +84,17 @@ export default function Highlights() {
 
       {/* Cards Section */}
       <Box
+        component="ul"
+        role="list"
+        aria-label="Weekly special menu items"
         sx={{
           display: { xs: "flex", md: "grid" },
           gridTemplateColumns: { md: "repeat(3, 1fr)" },
           gap: { xs: "1rem", md: "1.5rem" },
           overflowX: { xs: "auto", md: "visible" },
+          listStyle: "none",
+          margin: 0,
+          padding: 0,
           paddingBottom: { xs: "1rem", md: "0" },
           "&::-webkit-scrollbar": {
             display: "none",
@@ -95,7 +105,9 @@ export default function Highlights() {
       >
         {items.map((item, index) => (
           <Box
+            component="li"
             key={index}
+            role="listitem"
             sx={{
               minWidth: { xs: "75vw", sm: "320px", md: "auto" },
               maxWidth: { xs: "85vw", sm: "400px", md: "100%" },

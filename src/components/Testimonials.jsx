@@ -31,6 +31,8 @@ export default function Testimonials() {
 
   return (
     <Box
+      component="section"
+      aria-labelledby="testimonials-heading"
       sx={{
         padding: { xs: "3rem 1.5rem", md: "4rem 2rem" },
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/src/assets/restaurant.jpg')`,
@@ -42,7 +44,8 @@ export default function Testimonials() {
     >
       <Typography
         variant="h3"
-        component="h1"
+        component="h2"
+        id="testimonials-heading"
         sx={{
           fontSize: { xs: "2rem", md: "2.5rem" },
           fontWeight: 600,
@@ -56,6 +59,8 @@ export default function Testimonials() {
 
       {/* Cards Section */}
       <Box
+        role="list"
+        aria-label="Customer testimonials"
         sx={{
           display: { xs: "flex", md: "grid" },
           gridTemplateColumns: { md: "repeat(4, 1fr)" },
@@ -72,6 +77,7 @@ export default function Testimonials() {
         {testimonials.map((testimonial, index) => (
           <Box
             key={index}
+            role="listitem"
             sx={{
               minWidth: { xs: "70vw", sm: "280px", md: "auto" },
               maxWidth: { xs: "80vw", sm: "350px", md: "100%" },

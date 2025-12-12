@@ -32,20 +32,21 @@ export default function BookingPage() {
   }, [selectedDate]);
 
   return (
-    <>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <BookingForm
-          availableTimes={availableTimes}
-          setSelectedDate={setSelectedDate} // BookingForm notifies when date changes
-          submitForm={submitForm}
-        />
-      </Box>
-    </>
+    <Box
+      component="main"
+      role="main"
+      aria-label="Restaurant reservation page"
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <BookingForm
+        availableTimes={availableTimes}
+        setSelectedDate={setSelectedDate} // BookingForm notifies when date changes
+        submitForm={submitForm}
+      />
+    </Box>
   );
 }
