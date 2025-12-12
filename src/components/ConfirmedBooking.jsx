@@ -17,6 +17,8 @@ export default function ConfirmedBooking() {
           maxWidth: 400,
           padding: 3,
           textAlign: "center",
+          border: "none",
+          boxShadow: "none",
         }}
       >
         <CardContent>
@@ -46,6 +48,7 @@ export default function ConfirmedBooking() {
               cursor: "pointer",
               transition: "border-color 0.25s",
               width: "fit-content",
+              textTransform: "none",
               minWidth: "auto",
               "&:hover": {
                 borderColor: "black",

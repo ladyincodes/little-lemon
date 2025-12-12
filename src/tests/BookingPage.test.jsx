@@ -25,7 +25,7 @@ describe("Reservation Form", () => {
         dispatch={mockDispatch}
       />
     );
-    const headingElement = screen.getByText("Make A Reservation");
+    const headingElement = screen.getByText("Reservation");
     expect(headingElement).toBeInTheDocument();
   });
 
