@@ -121,20 +121,22 @@ export default function BookingForm({
         }}
         onBlur={() => setTouched((prev) => ({ ...prev, date: true }))}
         InputLabelProps={{ shrink: true }}
-        // required
+        required
         error={touched.date && !!errors.date}
         helperText={touched.date ? errors.date : ""}
       />
 
       {/* time dropdown*/}
       <FormControl>
-        <InputLabel>Choose Time</InputLabel>
+        <InputLabel id="time-select-label">Choose Time</InputLabel>
         <Select
+          labelId="time-select-label"
+          id="time-select"
           value={time}
           label="Choose Time"
           onChange={(e) => setTime(e.target.value)}
           sx={{ textAlign: "left" }}
-          // required
+          required
           onBlur={() => setTouched((prev) => ({ ...prev, time: true }))}
         >
           {availableTimes.map((t) => (
@@ -166,21 +168,23 @@ export default function BookingForm({
         onChange={(e) => setGuest(e.target.value)}
         onBlur={() => setTouched((prev) => ({ ...prev, guest: true }))}
         inputProps={{ min: 1, max: 10 }}
-        // required
+        required
         error={touched.guest && !!errors.guest}
         helperText={touched.guest ? errors.guest : ""}
       />
 
       {/* occasion */}
       <FormControl>
-        <InputLabel>Occasion</InputLabel>
+        <InputLabel id="occasion-select-lable">Occasion</InputLabel>
         <Select
+          labelId="occasion-select-lable"
           label="Occasion"
+          id="occasion-select"
           value={occasion}
           onChange={(e) => setOccasion(e.target.value)}
           onBlur={() => setTouched((prev) => ({ ...prev, occasion: true }))}
           sx={{ textAlign: "left" }}
-          // required
+          required
         >
           <MenuItem value="birthday">Birthday</MenuItem>
           <MenuItem value="anniversary">Anniversary</MenuItem>
